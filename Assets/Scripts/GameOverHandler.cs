@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverHandler : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverMenu;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Button continueButton;
     [SerializeField] private ScoreSystem scoreSystem;
     [SerializeField] private TMP_Text finalScoreText;
+    [SerializeField] private AsteroidSpawner asteroidSpawner;
 
     public void EndGame()
     {
-        int score = scoreSystem.GetScore();
+        int score = scoreSystem.EndTimer();
         finalScoreText.text = $"Final Score: {score}";
-        scoreSystem.gameObject.SetActive(false);
+        //scoreSystem.gameObject.SetActive(false);
+        asteroidSpawner.gameObject.SetActive(false);
         gameOverMenu.SetActive(true);
     }
 
@@ -23,9 +28,23 @@ public class GameOverHandler : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void Continue()
+    public void ContinueButton()
     {
-        gameObject.SetActive(false);
+        AdManager.Instance.ShowAd(this);
+
+        continueButton.interactable = false;
+    }
+
+    public void ContinueGame()
+    {
+        scoreSystem.StartTimer();
+        
+        player.transform.position = Vector3.zero;
+        player.SetActive(true);
+        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+        gameOverMenu.SetActive(false);
+        asteroidSpawner.gameObject.SetActive(true);
     }
 
     public void BackToMenu()

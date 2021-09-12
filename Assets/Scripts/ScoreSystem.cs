@@ -9,8 +9,14 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField] private int scoreMultiplier;
 
     private float score;
+    private bool shouldCount = true;
     void Update()
     {
+        if (!shouldCount)
+        {
+            return;
+        }
+        
         score += Time.deltaTime * scoreMultiplier;
         scoreText.text = Mathf.FloorToInt(score).ToString();
     }
@@ -18,5 +24,18 @@ public class ScoreSystem : MonoBehaviour
     public int GetScore()
     {
         return Mathf.FloorToInt(score);
+    }
+
+    public int EndTimer()
+    {
+        shouldCount = false;
+        scoreText.text = string.Empty;
+        return Mathf.FloorToInt(score);
+    }
+
+    public void StartTimer()
+    {
+        score = 0;
+        shouldCount = true;
     }
 }

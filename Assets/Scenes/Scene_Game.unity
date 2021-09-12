@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28425983, g: 0.3708815, b: 0.50004345, a: 1}
+  m_IndirectSpecularColor: {r: 0.2842597, g: 0.37088123, b: 0.500043, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -535,7 +535,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 219775418}
         m_TargetAssemblyTypeName: GameOverHandler, Assembly-CSharp
-        m_MethodName: Continue
+        m_MethodName: ContinueButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -830,8 +830,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverMenu: {fileID: 435320681}
+  player: {fileID: 116725519}
+  continueButton: {fileID: 125770361}
   scoreSystem: {fileID: 600880361}
   finalScoreText: {fileID: 786953114}
+  asteroidSpawner: {fileID: 931116453}
 --- !u!1 &374246362
 GameObject:
   m_ObjectHideFlags: 0
